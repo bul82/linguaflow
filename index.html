@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaFlow — Языковая школа</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --text: #1E293B;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+            --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* === HEADER === */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text);
+        }
+
+        .btn-accent:hover {
+            background: #D97706;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* === HERO === */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 50%, #F0FDF4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-bubbles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .bubble {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .bubble:nth-child(1) { background: var(--primary); animation-delay: 0s; }
+        .bubble:nth-child(2) { background: var(--secondary); animation-delay: 0.5s; width: 80px; height: 80px; }
+        .bubble:nth-child(3) { background: var(--accent); animation-delay: 1s; }
+        .bubble:nth-child(4) { background: var(--secondary); animation-delay: 1.5s; width: 70px; height: 70px; }
+        .bubble:nth-child(5) { background: var(--primary); animation-delay: 2s; width: 90px; height: 90px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* === SECTIONS === */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === LANGUAGES & LEVELS === */
+        .languages {
+            background: var(--surface);
+        }
+
+        .lang-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .lang-tab {
+            padding: 12px 24px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+
+        .lang-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .level-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .level-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .level-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .level-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .level-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .level-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* === LEVEL TEST === */
+        .test-section {
+            background: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 100%);
+        }
+
+        .test-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .test-progress {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .test-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 300ms ease;
+        }
+
+        .test-question {
+            display: none;
+        }
+
+        .test-question.active {
+            display: block;
+        }
+
+        .test-question h3 {
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+
+        .test-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .test-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .test-option:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .test-option.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .test-option input {
+            display: none;
+        }
+
+        .test-option .radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .test-option.selected .radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .test-option.selected .radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .test-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+
+        .test-result {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .test-result.active {
+            display: block;
+        }
+
+        .test-result .level-badge {
+            font-size: 18px;
+            padding: 8px 24px;
+            margin-bottom: 16px;
+        }
+
+        .test-result h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .test-result p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        /* === TEACHERS === */
+        .teachers {
+            background: var(--surface);
+        }
+
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .teacher-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .teacher-photo {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+        }
+
+        .teacher-card:nth-child(1) .teacher-photo { background: linear-gradient(135deg, #6366F1, #8B5CF6); }
+        .teacher-card:nth-child(2) .teacher-photo { background: linear-gradient(135deg, #10B981, #14B8A6); }
+        .teacher-card:nth-child(3) .teacher-photo { background: linear-gradient(135deg, #F59E0B, #F97316); }
+        .teacher-card:nth-child(4) .teacher-photo { background: linear-gradient(135deg, #EC4899, #8B5CF6); }
+
+        .teacher-info {
+            padding: 20px;
+        }
+
+        .teacher-info h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .teacher-specialty {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .teacher-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .teacher-rating .stars {
+            color: var(--accent);
+        }
+
+        .teacher-exp {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* === SCHEDULE === */
+        .schedule {
+            background: var(--bg);
+        }
+
+        .schedule-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toggle-btn {
+            padding: 12px 32px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .schedule-table {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .schedule-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .schedule-table tr:hover td {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .schedule-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .schedule-tag.online {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+        }
+
+        .schedule-tag.offline {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        /* === FORMATS === */
+        .formats {
+            background: var(--surface);
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .format-card {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 2px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .format-card:hover {
+            border-color: var(--primary);
+        }
+
+        .format-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .format-card:nth-child(1) .format-icon { background: var(--primary); }
+        .format-card:nth-child(2) .format-icon { background: var(--secondary); }
+
+        .format-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .format-card ul {
+            list-style: none;
+        }
+
+        .format-card li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .format-card li svg {
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        /* === PRICING === */
+        .pricing {
+            background: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 100%);
+        }
+
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .pricing-toggle span {
+            font-weight: 500;
+        }
+
+        .pricing-toggle span.active {
+            color: var(--primary);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 56px;
+            height: 28px;
+            background: var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+
+        .toggle-switch.active {
+            background: var(--primary);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(28px);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 2px solid var(--border);
+            position: relative;
+            transition: all var(--transition);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Популярный';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card .price-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .pricing-card li svg {
+            color: var(--secondary);
+        }
+
+        /* === TRIAL LESSON === */
+        .trial {
+            background: var(--surface);
+        }
+
+        .trial-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group label span {
+            color: #EF4444;
+        }
+
+        .form-group input,
+        .form-group select {
+            height: 48px;
+            padding: 0 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+        }
+
+        .form-submit {
+            margin-top: 24px;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+        }
+
+        .form-disclaimer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-contact svg {
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+
+        /* === MODAL === */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--surface);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-tab {
+            padding: 8px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .modal-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .modal-form {
+            display: none;
+        }
+
+        .modal-form.active {
+            display: block;
+        }
+
+        .modal-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-form .btn {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all var(--transition);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* === TOAST === */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--text);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--radius);
+            display: none;
+            z-index: 300;
+            animation: slideIn 300ms ease;
+        }
+
+        .toast.active {
+            display: block;
+        }
+
+        .toast.success {
+            background: var(--secondary);
+        }
+
+        .toast.error {
+            background: #EF4444;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .teachers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-card:last-child {
+                grid-column: span 2;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            footer .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-bubbles {
+                gap: 12px;
+            }
+
+            .bubble {
+                width: 60px;
+                height: 60px;
+                font-size: 10px;
+            }
+
+            .bubble:nth-child(2),
+            .bubble:nth-child(4) {
+                width: 50px;
+                height: 50px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .levels-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card:last-child {
+                grid-column: span 1;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            footer .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact li {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <i data-lucide="globe"></i>
+                LinguaFlow
+            </a>
+            <nav>
+                <a href="#languages">Языки</a>
+                <a href="#test">Тест</a>
+                <a href="#teachers">Преподаватели</a>
+                <a href="#schedule">Расписание</a>
+                <a href="#pricing">Тарифы</a>
+                <a href="#" id="open-cabinet">Личный кабинет</a>
+            </nav>
+            <div class="header-actions">
+                <a href="#trial" class="btn btn-accent btn-sm">Записаться</a>
+                <button class="mobile-menu-btn" id="mobile-menu">
+                    <i data-lucide="menu" width="24" height="24"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Освой язык с нуля до <span>fluency</span></h1>
+                <p>LinguaFlow — современная языковая школа с персональным подходом. Опытные преподаватели, гибкое расписание, онлайн и офлайн формат.</p>
+                <div class="hero-buttons">
+                    <a href="#test" class="btn btn-primary btn-lg">Пройти тест</a>
+                    <a href="#languages" class="btn btn-secondary btn-lg">Выбрать язык</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-bubbles">
+                    <div class="bubble">EN</div>
+                    <div class="bubble">ES</div>
+                    <div class="bubble">DE</div>
+                    <div class="bubble">FR</div>
+                    <div class="bubble">中文</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LANGUAGES & LEVELS -->
+    <section class="languages" id="languages">
+        <div class="container">
+            <div class="section-header">
+                <h2>Языки и уровни</h2>
+                <p>Выберите язык и узнайте, какой уровень подходит именно вам</p>
+            </div>
+            <div class="lang-tabs">
+                <button class="lang-tab active" data-lang="english">English</button>
+                <button class="lang-tab" data-lang="spanish">Español</button>
+                <button class="lang-tab" data-lang="german">Deutsch</button>
+                <button class="lang-tab" data-lang="french">Français</button>
+                <button class="lang-tab" data-lang="chinese">中文</button>
+            </div>
+            <div class="levels-grid" id="levels-grid">
+                <!-- Levels will be inserted by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- LEVEL TEST -->
+    <section class="test-section" id="test">
+        <div class="container">
+            <div class="section-header">
+                <h2>Тест на уровень</h2>
+                <p>Пройдите короткий тест и узнайте свой текущий уровень знания языка</p>
+            </div>
+            <div class="test-container">
+                <div class="test-progress">
+                    <div class="test-progress-bar" id="test-progress" style="width: 0%"></div>
+                </div>
+                <div id="test-content">
+                    <!-- Questions will be inserted by JS -->
+                </div>
+                <div class="test-result" id="test-result">
+                    <span class="level-badge" id="result-level">B1</span>
+                    <h3>Ваш уровень: <span id="result-level-text">Intermediate</span></h3>
+                    <p id="result-description">Отличный результат! Вы можете общаться на повседневные темы, понимаете основные идеи при чтении и аудировании.</p>
+                    <a href="#pricing" class="btn btn-primary">Выбрать тариф</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEACHERS -->
+    <section class="teachers" id="teachers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Наши преподаватели</h2>
+                <p>Профессионалы с многолетним опытом и любовью к преподаванию</p>
+            </div>
+            <div class="teachers-grid">
+                <div class="teacher-card">
+                    <div class="teacher-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Анна Петрова</h3>
+                        <p class="teacher-specialty">English, B2-C1</p>
+                        <div class="teacher-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.9</span>
+                        </div>
+                        <p class="teacher-exp">8 лет опыта</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Маркос Гарсия</h3>
+                        <p class="teacher-specialty">Español, A1-B2</p>
+                        <div class="teacher-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.8</span>
+                        </div>
+                        <p class="teacher-exp">5 лет опыта</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Елена Шмидт</h3>
+                        <p class="teacher-specialty">Deutsch, A1-C1</p>
+                        <div class="teacher-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>5.0</span>
+                        </div>
+                        <p class="teacher-exp">12 лет опыта</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-photo">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Жан-Пьер Дюбуа</h3>
+                        <p class="teacher-specialty">Français, A1-B2</p>
+                        <div class="teacher-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.7</span>
+                        </div>
+                        <p class="teacher-exp">6 лет опыта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <h2>Расписание занятий</h2>
+                <p>Выберите удобное время для занятий</p>
+            </div>
+            <div class="schedule-toggle">
+                <button class="toggle-btn active" data-format="online">Онлайн</button>
+                <button class="toggle-btn" data-format="offline">Офлайн</button>
+            </div>
+            <div class="schedule-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>День</th>
+                            <th>Время</th>
+                            <th>Язык</th>
+                            <th>Уровень</th>
+                            <th>Преподаватель</th>
+                            <th>Формат</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+                        <!-- Schedule rows will be inserted by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMATS -->
+    <section class="formats" id="formats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Форматы обучения</h2>
+                <p>Выберите удобный для вас формат занятий</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format-card">
+                    <div class="format-icon">
+                        <i data-lucide="monitor" width="32" height="32"></i>
+                    </div>
+                    <h3>Онлайн</h3>
+                    <ul>
+                        <li><i data-lucide="check" width="18" height="18"></i> Занятия из любой точки мира</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Zoom, Google Meet или Discord</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Записи занятий для повторения</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Интерактивные материалы</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Гибкое расписание</li>
+                    </ul>
+                </div>
+                <div class="format-card">
+                    <div class="format-icon">
+                        <i data-lucide="building" width="32" height="32"></i>
+                    </div>
+                    <h3>Офлайн</h3>
+                    <ul>
+                        <li><i data-lucide="check" width="18" height="18"></i> Уютные классы в центре города</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Небольшие группы до 8 человек</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Живое общение и практика</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Современное оборудование</li>
+                        <li><i data-lucide="check" width="18" height="18"></i> Кофе и чай включены</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Тарифы</h2>
+                <p>Выберите подходящий план обучения</p>
+            </div>
+            <div class="pricing-toggle">
+                <span class="active" id="monthly-label">Месяц</span>
+                <div class="toggle-switch" id="pricing-toggle"></div>
+                <span id="yearly-label">Год</span>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Старт</h3>
+                    <div class="price" id="price-start">2 990 ₽<span>/мес</span></div>
+                    <p class="price-desc">4 занятия в месяц</p>
+                    <ul>
+                        <li><i data-lucide="check" width="16" height="16"></i> 4 групповых занятия</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Базовые материалы</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Доступ к платформе</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Чат с преподавателем</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-secondary" style="width:100%">Выбрать</a>
+                </div>
+                <div class="pricing-card popular">
+                    <h3>Стандарт</h3>
+                    <div class="price" id="price-standard">4 990 ₽<span>/мес</span></div>
+                    <p class="price-desc">8 занятий в месяц</p>
+                    <ul>
+                        <li><i data-lucide="check" width="16" height="16"></i> 8 групповых занятий</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Все учебные материалы</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> 2 индивидуальных занятия</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Сертификат по окончании</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Приоритетная поддержка</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-primary" style="width:100%">Выбрать</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Интенсив</h3>
+                    <div class="price" id="price-intense">6 990 ₽<span>/мес</span></div>
+                    <p class="price-desc">12 занятий в месяц</p>
+                    <ul>
+                        <li><i data-lucide="check" width="16" height="16"></i> 12 групповых занятий</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> VIP-материалы и методички</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> 4 индивидуальных занятия</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Свободное расписание</li>
+                        <li><i data-lucide="check" width="16" height="16"></i> Годовой сертификат</li>
+                    </ul>
+                    <a href="#trial" class="btn btn-secondary" style="width:100%">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRIAL LESSON -->
+    <section class="trial" id="trial">
+        <div class="container">
+            <div class="section-header">
+                <h2>Запишитесь на пробный урок</h2>
+                <p>Бесплатное занятие продолжительностью 30 минут</p>
+            </div>
+            <form class="trial-form" id="trial-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Имя <span>*</span></label>
+                        <input type="text" name="name" required placeholder="Александр">
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон <span>*</span></label>
+                        <input type="tel" name="phone" required placeholder="+7 (999) 123-45-67">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="email" required placeholder="alex@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Язык</label>
+                        <select name="language">
+                            <option value="english">English</option>
+                            <option value="spanish">Español</option>
+                            <option value="german">Deutsch</option>
+                            <option value="french">Français</option>
+                            <option value="chinese">中文</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Уровень</label>
+                        <select name="level">
+                            <option value="">Не знаю</option>
+                            <option value="A1">A1 — Beginner</option>
+                            <option value="A2">A2 — Elementary</option>
+                            <option value="B1">B1 — Intermediate</option>
+                            <option value="B2">B2 — Upper Intermediate</option>
+                            <option value="C1">C1 — Advanced</option>
+                            <option value="C2">C2 — Proficiency</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Формат</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="format" value="online" checked>
+                                <span>Онлайн</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="format" value="offline">
+                                <span>Офлайн</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-accent btn-lg">Записаться на бесплатный урок</button>
+                </div>
+                <p class="form-disclaimer">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">
+                <a href="#" class="logo" style="color: white;">
+                    <i data-lucide="globe"></i>
+                    LinguaFlow
+                </a>
+                <p>Современная языковая школа с персональным подходом к каждому ученику. Помогаем освоить язык с нуля до уверенного общения.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#languages">Языки</a></li>
+                    <li><a href="#test">Тест</a></li>
+                    <li><a href="#teachers">Преподаватели</a></li>
+                    <li><a href="#schedule">Расписание</a></li>
+                    <li><a href="#pricing">Тарифы</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Информация</h4>
+                <ul>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Условия использования</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Блог</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul class="footer-contact">
+                    <li><i data-lucide="phone" width="16" height="16"></i> +7 (495) 123-45-67</li>
+                    <li><i data-lucide="mail" width="16" height="16"></i> hello@linguaflow.ru</li>
+                    <li><i data-lucide="map-pin" width="16" height="16"></i> Москва, ул. Тверская, 12</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-bottom">
+                © 2026 LinguaFlow. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: PERSONAL CABINET -->
+    <div class="modal-overlay" id="cabinet-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">
+                <i data-lucide="x" width="24" height="24"></i>
+            </button>
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="login">Вход</button>
+                <button class="modal-tab" data-tab="register">Регистрация</button>
+            </div>
+            <form class="modal-form active" id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" required placeholder="••••••••">
+                </div>
+                <a href="#" style="display: block; text-align: right; font-size: 14px; color: var(--primary); margin-bottom: 16px;">Забыли пароль?</a>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <div class="social-login">
+                    <button type="button" class="social-btn">
+                        <i data-lucide="brand-google" width="18" height="18"></i> Google
+                    </button>
+                    <button type="button" class="social-btn">
+                        <i data-lucide="brand-vk" width="18" height="18"></i> VK
+                    </button>
+                </div>
+            </form>
+            <form class="modal-form" id="register-form">
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" required placeholder="Александр">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Подтверждение пароля</label>
+                    <input type="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // === DATA ===
+        const languagesData = {
+            english: {
+                name: 'English',
+                levels: [
+                    { level: 'A1', name: 'Beginner', desc: 'Базовые фразы, алфавит, произношение. Вы научитесь представляться и задавать простые вопросы.', students: 234 },
+                    { level: 'A2', name: 'Elementary', desc: 'Повседневные темы: еда, путешествия, работа. Простые диалоги и понимание медленной речи.', students: 456 },
+                    { level: 'B1', name: 'Intermediate', desc: 'Свободное общение на знакомые темы. Чтение статей, понимание основных идей.', students: 678 },
+                    { level: 'B2', name: 'Upper Intermediate', desc: 'Сложные тексты, аргументированные дискуссии. Английский для работы и учёбы.', students: 543 },
+                    { level: 'C1', name: 'Advanced', desc: 'Свободное владение языком. Анализ текстов, участие в профессиональных дискуссиях.', students: 321 },
+                    { level: 'C2', name: 'Proficiency', desc: 'Уровень носителя языка. Академический английский, тонкие нюансы и идиомы.', students: 156 }
+                ]
+            },
+            spanish: {
+                name: 'Español',
+                levels: [
+                    { level: 'A1', name: 'Principiante', desc: 'Приветствия, алфавит, базовая лексика. Вы научитесь читать и писать на испанском.', students: 189 },
+                    { level: 'A2', name: 'Elemental', desc: 'Повседневные ситуации: кафе, магазин, транспорт. Простые диалоги.', students: 267 },
+                    { level: 'B1', name: 'Intermedio', desc: 'Общение на знакомые темы. Чтение адаптированных текстов, понимание речи.', students: 345 },
+                    { level: 'B2', name: 'Intermedio-Alto', desc: 'Свободное общение. Испанский для путешествий, работы и учёбы.', students: 234 },
+                    { level: 'C1', name: 'Avanzado', desc: 'Сложные тексты, фильмы без субтитров. Культурные нюансы испанского.', students: 123 },
+                    { level: 'C2', name: 'Maestría', desc: 'Уровень носителя. Литературный испанский, латиноамериканские варианты.', students: 67 }
+                ]
+            },
+            german: {
+                name: 'Deutsch',
+                levels: [
+                    { level: 'A1', name: 'Anfänger', desc: 'Алфавит, базовые фразы, произношение. Приветствия и простые фразы для выживания.', students: 198 },
+                    { level: 'A2', name: 'Grundstufe', desc: 'Повседневные темы: работа, семья, хобби. Грамматика на начальном уровне.', students: 276 },
+                    { level: 'B1', name: 'Mittelstufe', desc: 'Общение на знакомые темы. Чтение газет, понимание радио и телевидения.', students: 367 },
+                    { level: 'B2', name: 'Mittelstufe-Oben', desc: 'Свободное общение. Немецкий для работы и академических целей.', students: 245 },
+                    { level: 'C1', name: 'Oberstufe', desc: 'Сложные тексты, участие в дискуссиях. Деловой и академический немецкий.', students: 134 },
+                    { level: 'C2', name: 'Expertise', desc: 'Уровень носителя. Литературный немецкий, профессиональная терминология.', students: 78 }
+                ]
+            },
+            french: {
+                name: 'Français',
+                levels: [
+                    { level: 'A1', name: 'Débutant', desc: 'Алфавит, базовые фразы, произношение. Приветствия и введение себя.', students: 167 },
+                    { level: 'A2', name: 'Élémentaire', desc: 'Повседневные темы: путешествия, еда, семья. Простые диалоги.', students: 234 },
+                    { level: 'B1', name: 'Intermédiaire', desc: 'Общение на знакомые темы. Чтение адаптированной литературы.', students: 312 },
+                    { level: 'B2', name: 'Intermédiaire-Sup', desc: 'Свободное общение. Французский для работы, учёбы и культуры.', students: 198 },
+                    { level: 'C1', name: 'Avancé', desc: 'Сложные тексты, фильмы. Культурные и языковые нюансы.', students: 112 },
+                    { level: 'C2', name: 'Maîtrise', desc: 'Уровень носителя. Академический и литературный французский.', students: 56 }
+                ]
+            },
+            chinese: {
+                name: '中文',
+                levels: [
+                    { level: 'A1', name: '初学者', desc: 'Пиньинь, базовые иероглифы, тоны. Простые фразы и приветствия.', students: 145 },
+                    { level: 'A2', name: '基础', desc: 'Повседневные темы: еда, транспорт, семья. 300+ иероглифов.', students: 198 },
+                    { level: 'B1', name: '中级', desc: 'Общение на знакомые темы. 600+ иероглифов, базовая грамматика.', students: 267 },
+                    { level: 'B2', name: '中上级', desc: 'Свободное общение. 1200+ иероглифов для чтения текстов.', students: 178 },
+                    { level: 'C1', name: '高级', desc: 'Сложные тексты, китайские СМИ. 2500+ иероглифов.', students: 89 },
+                    { level: 'C2', name: '精通', desc: 'Уровень носителя. Литературный китайский, профессиональная терминология.', students: 34 }
+                ]
+            }
+        };
+
+        const testQuestions = [
+            {
+                question: 'Как вы обычно находите новую информацию на иностранном языке?',
+                options: [
+                    { text: 'Использую словарь или переводчик', score: 0 },
+                    { text: 'Читаю простые тексты с опорой на словарь', score: 1 },
+                    { text: 'Читаю статьи и понимаю основной смысл', score: 2 },
+                    { text: 'Читаю сложные тексты без особых трудностей', score: 3 }
+                ]
+            },
+            {
+                question: 'Как вы опишете свой уровень понимания речи на слух?',
+                options: [
+                    { text: 'Понимаю отдельные слова и фразы', score: 0 },
+                    { text: 'Понимаю медленную и чёткую речь', score: 1 },
+                    { text: 'Понимаю большинство повседневных разговоров', score: 2 },
+                    { text: 'Понимаю речь носителей без проблем', score: 3 }
+                ]
+            },
+            {
+                question: 'Можете ли вы поддержать разговор на иностранном языке?',
+                options: [
+                    { text: 'Могу представиться и ответить на простые вопросы', score: 0 },
+                    { text: 'Могу общаться на повседневные темы', score: 1 },
+                    { text: 'Могу обсуждать различные темы достаточно свободно', score: 2 },
+                    { text: 'Могу участвовать в любых дискуссиях', score: 3 }
+                ]
+            },
+            {
+                question: 'Как вы оцените свои навыки письма?',
+                options: [
+                    { text: 'Могу написать простые фразы и предложения', score: 0 },
+                    { text: 'Могу написать короткие тексты на знакомые темы', score: 1 },
+                    { text: 'Могу писать связные тексты с аргументами', score: 2 },
+                    { text: 'Могу писать сложные тексты, эссе, письма', score: 3 }
+                ]
+            },
+            {
+                question: 'Сколько времени вы изучали язык?',
+                options: [
+                    { text: 'Менее 6 месяцев', score: 0 },
+                    { text: 'От 6 месяцев до 1 года', score: 1 },
+                    { text: 'От 1 до 3 лет', score: 2 },
+                    { text: 'Более 3 лет', score: 3 }
+                ]
+            }
+        ];
+
+        const scheduleData = {
+            online: [
+                { day: 'Понедельник', time: '10:00', lang: 'English', level: 'B1', teacher: 'Анна Петрова' },
+                { day: 'Понедельник', time: '19:00', lang: 'English', level: 'A2', teacher: 'Анна Петрова' },
+                { day: 'Среда', time: '18:00', lang: 'Español', level: 'A1', teacher: 'Маркос Гарсия' },
+                { day: 'Четверг', time: '10:00', lang: 'Deutsch', level: 'B2', teacher: 'Елена Шмидт' },
+                { day: 'Пятница', time: '19:00', lang: 'Français', level: 'A2', teacher: 'Жан-Пьер Дюбуа' },
+                { day: 'Суббота', time: '12:00', lang: 'English', level: 'C1', teacher: 'Анна Петрова' }
+            ],
+            offline: [
+                { day: 'Вторник', time: '18:30', lang: 'English', level: 'B1', teacher: 'Анна Петрова' },
+                { day: 'Вторник', time: '19:30', lang: 'Deutsch', level: 'A2', teacher: 'Елена Шмидт' },
+                { day: 'Четверг', time: '18:30', lang: 'Español', level: 'B1', teacher: 'Маркос Гарсия' },
+                { day: 'Пятница', time: '18:00', lang: 'English', level: 'A1', teacher: 'Анна Петрова' },
+                { day: 'Суббота', time: '11:00', lang: 'Français', level: 'B2', teacher: 'Жан-Пьер Дюбуа' }
+            ]
+        };
+
+        const pricingData = {
+            monthly: { start: '2 990 ₽', standard: '4 990 ₽', intense: '6 990 ₽' },
+            yearly: { start: '28 900 ₽', standard: '47 900 ₽', intense: '65 900 ₽' }
+        };
+
+        // === STATE ===
+        let currentLang = 'english';
+        let currentQuestion = 0;
+        let testAnswers = [];
+        let isYearly = false;
+
+        // === DOM ELEMENTS ===
+        const levelsGrid = document.getElementById('levels-grid');
+        const langTabs = document.querySelectorAll('.lang-tab');
+        const testContent = document.getElementById('test-content');
+        const testProgress = document.getElementById('test-progress');
+        const testResult = document.getElementById('test-result');
+        const scheduleBody = document.getElementById('schedule-body');
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const pricingToggle = document.getElementById('pricing-toggle');
+        const trialForm = document.getElementById('trial-form');
+        const cabinetModal = document.getElementById('cabinet-modal');
+        const modalTabs = document.querySelectorAll('.modal-tab');
+        const modalForms = document.querySelectorAll('.modal-form');
+        const toast = document.getElementById('toast');
+
+        // === FUNCTIONS ===
+        function renderLevels() {
+            const data = languagesData[currentLang];
+            levelsGrid.innerHTML = data.levels.map(l => `
+                <div class="level-card">
+                    <span class="level-badge">${l.level}</span>
+                    <h3>${l.name}</h3>
+                    <p>${l.desc}</p>
+                    <div class="level-stats">
+                        <span><i data-lucide="users" width="14" height="14"></i> ${l.students} учеников</span>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function renderTest() {
+            if (currentQuestion >= testQuestions.length) {
+                showTestResult();
+                return;
+            }
+
+            const q = testQuestions[currentQuestion];
+            testContent.innerHTML = `
+                <div class="test-question active">
+                    <h3>Вопрос ${currentQuestion + 1} из ${testQuestions.length}: ${q.question}</h3>
+                    <div class="test-options">
+                        ${q.options.map((opt, i) => `
+                            <label class="test-option" data-score="${opt.score}">
+                                <input type="radio" name="test-answer" value="${opt.score}">
+                                <span class="radio"></span>
+                                <span>${opt.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="test-nav">
+                        ${currentQuestion > 0 ? '<button class="btn btn-secondary" id="test-prev">Назад</button>' : '<div></div>'}
+                        <button class="btn btn-primary" id="test-next" disabled>Далее</button>
+                    </div>
+                </div>
+            `;
+
+            testProgress.style.width = `${(currentQuestion / testQuestions.length) * 100}%`;
+
+            // Event listeners
+            document.querySelectorAll('.test-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    document.querySelectorAll('.test-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    opt.querySelector('input').checked = true;
+                    document.getElementById('test-next').disabled = false;
+                });
+            });
+
+            document.getElementById('test-next')?.addEventListener('click', () => {
+                const selected = document.querySelector('input[name="test-answer"]:checked');
+                if (selected) {
+                    testAnswers.push(parseInt(selected.value));
+                    currentQuestion++;
+                    renderTest();
+                }
+            });
+
+            document.getElementById('test-prev')?.addEventListener('click', () => {
+                if (currentQuestion > 0) {
+                    testAnswers.pop();
+                    currentQuestion--;
+                    renderTest();
+                }
+            });
+        }
+
+        function showTestResult() {
+            const total = testAnswers.reduce((a, b) => a + b, 0);
+            const avg = total / testAnswers.length;
+
+            let level, levelText, description;
+
+            if (avg <= 0.5) {
+                level = 'A1';
+                levelText = 'Beginner — Начинающий';
+                description = 'Отличное начало! Вы только знакомитесь с языком. За 3-6 месяцев регулярных занятий достигнете уровня A2.';
+            } else if (avg <= 1.2) {
+                level = 'A2';
+                levelText = 'Elementary — Базовый';
+                description = 'У вас есть базовые знания. Вы можете общаться на простые темы. С нашими занятиями за 4-6 месяцев выйдете на уровень B1.';
+            } else if (avg <= 2) {
+                level = 'B1';
+                levelText = 'Intermediate — Средний';
+                description = 'Хороший уровень! Вы можете общаться на повседневные темы. Продолжайте заниматься для уверенного B2.';
+            } else if (avg <= 2.5) {
+                level = 'B2';
+                levelText = 'Upper Intermediate — Выше среднего';
+                description = 'Отличный результат! Вы хорошо владеете языком. До уровня C1 осталось немного — 6-8 месяцев интенсивных занятий.';
+            } else {
+                level = 'C1';
+                levelText = 'Advanced — Продвинутый';
+                description = 'Впечатляюще! Вы свободно общаетесь на иностранном языке. Продолжайте развиваться для идеального C2.';
+            }
+
+            document.getElementById('result-level').textContent = level;
+            document.getElementById('result-level-text').textContent = levelText;
+            document.getElementById('result-description').textContent = description;
+
+            testContent.style.display = 'none';
+            testProgress.style.width = '100%';
+            testResult.classList.add('active');
+            lucide.createIcons();
+        }
+
+        function renderSchedule(format) {
+            const data = scheduleData[format];
+            scheduleBody.innerHTML = data.map(row => `
+                <tr>
+                    <td>${row.day}</td>
+                    <td>${row.time}</td>
+                    <td>${row.lang}</td>
+                    <td><span class="schedule-tag">${row.level}</span></td>
+                    <td>${row.teacher}</td>
+                    <td><span class="schedule-tag ${format}">${format === 'online' ? 'Онлайн' : 'Офлайн'}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function updatePricing() {
+            const prices = isYearly ? pricingData.yearly : pricingData.monthly;
+            document.getElementById('price-start').innerHTML = `${prices.start}<span>/${isYearly ? 'год' : 'мес'}</span>`;
+            document.getElementById('price-standard').innerHTML = `${prices.standard}<span>/${isYearly ? 'год' : 'мес'}</span>`;
+            document.getElementById('price-intense').innerHTML = `${prices.intense}<span>/${isYearly ? 'год' : 'мес'}</span>`;
+        }
+
+        function showToast(message, type = 'success') {
+            toast.textContent = message;
+            toast.className = `toast active ${type}`;
+            setTimeout(() => toast.classList.remove('active'), 3000);
+        }
+
+        // === EVENT LISTENERS ===
+        langTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                langTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentLang = tab.dataset.lang;
+                renderLevels();
+            });
+        });
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderSchedule(btn.dataset.format);
+            });
+        });
+
+        pricingToggle.addEventListener('click', () => {
+            isYearly = !isYearly;
+            pricingToggle.classList.toggle('active', isYearly);
+            document.getElementById('monthly-label').classList.toggle('active', !isYearly);
+            document.getElementById('yearly-label').classList.toggle('active', isYearly);
+            updatePricing();
+        });
+
+        trialForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(trialForm);
+            const data = Object.fromEntries(formData);
+            console.log('Trial form submitted:', data);
+            showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+            trialForm.reset();
+        });
+
+        document.getElementById('open-cabinet').addEventListener('click', (e) => {
+            e.preventDefault();
+            cabinetModal.classList.add('active');
+        });
+
+        document.getElementById('modal-close').addEventListener('click', () => {
+            cabinetModal.classList.remove('active');
+        });
+
+        cabinetModal.addEventListener('click', (e) => {
+            if (e.target === cabinetModal) cabinetModal.classList.remove('active');
+        });
+
+        modalTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                modalTabs.forEach(t => t.classList.remove('active'));
+                modalForms.forEach(f => f.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-form`).classList.add('active');
+            });
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Вход выполнен успешно!');
+            cabinetModal.classList.remove('active');
+        });
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Регистрация прошла успешно!');
+            cabinetModal.classList.remove('active');
+        });
+
+        // === INIT ===
+        renderLevels();
+        renderTest();
+        renderSchedule('online');
+        updatePricing();
+    </script>
+</body>
+</html>
