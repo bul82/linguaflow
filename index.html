@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="LinguaFlow — языковая школа с персональным подходом. Опытные преподаватели, гибкое расписание, онлайн и офлайн формат. Пробный урок бесплатно.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         *, *::before, *::after {
@@ -1842,7 +1844,6 @@
                     </div>
                 </div>
             `).join('');
-            lucide.createIcons();
         }
 
         function renderTest() {
@@ -1936,7 +1937,6 @@
             testContent.style.display = 'none';
             testProgress.style.width = '100%';
             testResult.classList.add('active');
-            lucide.createIcons();
         }
 
         function renderSchedule(format) {
@@ -1996,7 +1996,6 @@
             e.preventDefault();
             const formData = new FormData(trialForm);
             const data = Object.fromEntries(formData);
-            console.log('Trial form submitted:', data);
             showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
             trialForm.reset();
         });
@@ -2004,6 +2003,20 @@
         document.getElementById('open-cabinet').addEventListener('click', (e) => {
             e.preventDefault();
             cabinetModal.classList.add('active');
+        });
+
+        document.getElementById('mobile-menu').addEventListener('click', () => {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'fixed';
+            nav.style.top = '70px';
+            nav.style.left = '0';
+            nav.style.right = '0';
+            nav.style.background = 'white';
+            nav.style.padding = '24px';
+            nav.style.flexDirection = 'column';
+            nav.style.gap = '16px';
+            nav.style.borderBottom = '1px solid var(--border)';
         });
 
         document.getElementById('modal-close').addEventListener('click', () => {
@@ -2031,6 +2044,12 @@
 
         document.getElementById('register-form').addEventListener('submit', (e) => {
             e.preventDefault();
+            const password = document.querySelector('#register-form input[type="password"]:nth-of-type(2)').value;
+            const confirmPassword = document.querySelector('#register-form input[type="password"]:last-of-type').value;
+            if (password !== confirmPassword) {
+                showToast('Пароли не совпадают', 'error');
+                return;
+            }
             showToast('Регистрация прошла успешно!');
             cabinetModal.classList.remove('active');
         });
